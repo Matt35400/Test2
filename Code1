@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+public class IntegerTricks {
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("Welcome! Please enter an integer: ");
+		int inputValue = input.nextInt();
+		
+		System.out.println("The sum of all the digits in " + inputValue + " is " + RunIntegerTricks.sumDigits(inputValue));
+		System.out.println(inputValue + " reversed is " + RunIntegerTricks.reverse(inputValue));
+		System.out.println(inputValue + " is " + ((RunIntegerTricks.isPalindrome(inputValue)) ? "a palindrome" : "not a palindrome"));
+		System.out.println(inputValue + " is " + ((RunIntegerTricks.isPrime(inputValue)) ? "a prime number" : "not a prime number"));
+		System.out.println("The list of factors: " + RunIntegerTricks.factors(inputValue));
+	}
+}
+
+class RunIntegerTricks {
+	
+	public static int sumDigits(int value) {
+		int digitNum = 0, digitSum = 0;
+		
+		while (value > 0) {
+			digitNum = value % 10;
+			digitSum = digitSum + digitNum;
+			value = value / 10;
+		}
+
+		return digitSum;
+	}		
+	public static int reverse(int value) {
+	String integerReverse = "";
+	while (value > 0) {
+		integerReverse += value % 10;
+		value /= 10;	
+	}
+	return Integer.parseInt(integerReverse);
+	}
+
+	public static boolean isPalindrome(int value) {
+		if (reverse(value) == value) 
+			return true;
+		else
+			return false;
+	}
+	
+	
+	public static boolean isPrime(int value) {
+		for (int i = value-1; i > 1; i--) {
+			if (value % i == 0) return false;
+		}
+		return true;
+	}
+	
+	
+	public static String factors(int value) {
+		String factors = "";
+		for (int i = value; i > 0; i--) {
+			if (value % i == 0)
+				factors += (value / i) + " ";
+		}
+		return factors;
+	}
+}
